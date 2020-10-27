@@ -2,6 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
 const port = 3000;
+require('dotenv').config();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -10,7 +11,7 @@ let city = 'Hisua';
 
 app.get('/', (req, res) => {
     const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';	
-    const apiId = '&appid=ae4be719cf240413da7aab32c8eaf23c&units=metric';
+    const apiId = `&appid=${process.env.API_KEY}&units=metric`;
 
     const userLocation = (url1, url2, city) => {
         let newUrl = url1 + city + url2;
